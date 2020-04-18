@@ -1,6 +1,5 @@
 package com.epam.sha.selenium;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pages.MainPage;
 import pages.MainPageWithFindBy;
@@ -40,7 +39,6 @@ public class MarkupTest extends BaseTest {
     }
 
     @Test
-    @Disabled("The bug with Disable")
     public void testButtonClickWithDisableHealing() {
         MainPageWithFindBy mainPage = new MainPageWithFindBy(driver);
         mainPage.open()
