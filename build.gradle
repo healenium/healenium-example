@@ -42,8 +42,8 @@ dependencies {
     testCompile group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
     testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
 
-    testCompile 'com.epam.reportportal:agent-java-junit5:4.0.1'
-    compile group: 'com.epam.reportportal', name: 'logger-java-log4j', version: '4.0.1'
+//    testCompile 'com.epam.reportportal:agent-java-junit5:4.0.1'
+//    compile group: 'com.epam.reportportal', name: 'logger-java-log4j', version: '4.0.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.13.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.1'
     testCompile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.13.1'
@@ -57,4 +57,5 @@ ext {
 
 test {
     useJUnitPlatform()
+    systemProperty 'junit.jupiter.extensions.autodetection.enabled', true
 }
