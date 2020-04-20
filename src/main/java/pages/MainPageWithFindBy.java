@@ -2,11 +2,8 @@ package pages;
 
 
 import com.epam.healenium.SelfHealingDriver;
-import com.epam.healenium.annotation.DisableHealing;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,17 +11,28 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainPageWithFindBy extends BasePage {
 
-    @FindBy(id = "markup-generation-button")
-    WebElement generateMarkupBtnId;
+    @FindBy(xpath = "//input[@name='EMAIL']")
+    WebElement subscribeEmail;
 
-    @FindBy(xpath = "//button[contains(@class,'default-btn')]")
-    WebElement testButton;
+    @FindBy(xpath = "//button[text()='Subscribe']")
+    WebElement subscribeButton;
 
-    @FindBy(id = "for-invisible-test")
-    WebElement buttonForInvisible;
+    @FindBy(css = "div.js-errorbox-all.t186__blockinput-errorbox")
+    WebElement subscribeValidationErrorNotification;
 
-    @FindBy(id = "field-parent")
-    WebElement fieldParent;
+    @FindBy(xpath = "//input[@placeholder='E-mail']")
+    WebElement submitEmail;
+
+    @FindBy(xpath = "//input[@placeholder='Name']")
+    WebElement submitName;
+
+    @FindBy(xpath = "//input[@placeholder='Phone']")
+    WebElement submitPhone;
+
+    @FindBy(xpath = "//button[text()='Submit']")
+    WebElement submitButton;
+
+    By emailErrorNotification = By.xpath("(//div[@class='t-form__errorbox-text t-text t-text_md'])[2]");
 
     public MainPageWithFindBy(SelfHealingDriver driver) {
         super(driver);
@@ -36,55 +44,45 @@ public class MainPageWithFindBy extends BasePage {
         return this;
     }
 
-    public MainPageWithFindBy generateMarkup() {
-        generateMarkupBtnId.click();
+    public MainPageWithFindBy inputEmailToSubscribe(String email) {
+        subscribeEmail.sendKeys(email);
         return this;
     }
 
-    public MainPageWithFindBy clickTestButton() {
-        testButton.click();
+    public MainPageWithFindBy clickSubscribe() {
+        subscribeButton.click();
         return this;
     }
 
-    public MainPageWithFindBy clickButtonForInvisible() {
-        buttonForInvisible.click();
+    public String getSubscriptionValidationErrorText() {
+        return subscribeValidationErrorNotification.getText();
+    }
+
+    public MainPageWithFindBy inputEmailToSubmit(String email) {
+        submitEmail.sendKeys(email);
         return this;
     }
 
-    public boolean checkThatButtonInvisible() {
-        try {
-            new WebDriverWait(driver, 1)
-                    .until(ExpectedConditions.invisibilityOf(buttonForInvisible));
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public MainPageWithFindBy hoverOnTestButton() {
-        Actions action = new Actions(driver);
-        action.moveToElement(testButton).perform();
+    public MainPageWithFindBy inputNameToSubmit(String name) {
+        submitName.sendKeys(name);
         return this;
     }
 
-    public String takeValueFromSecondButton() {
-        return fieldParent
-                .findElement(By.xpath(".//input"))
-                .getAttribute("Value");
+    public MainPageWithFindBy inputPhoneToSubmit(String phone) {
+        submitPhone.sendKeys(phone);
+        return this;
     }
 
-    public String getAttributeFromTestButton(String attribute) {
-        return testButton.getAttribute(attribute);
+    public MainPageWithFindBy clickSubmit() {
+        submitButton.click();
+        return this;
     }
 
-    @DisableHealing
-    public boolean checkLocatorTestButtonDontHealing() {
-        try {
-            testButton.click();
-            return false;
-        } catch (NoSuchElementException e) {
-            return true;
-        }
+    public String getEmailErrorNotificationText() {
+        WebDriverWait wait = new WebDriverWait(driver, 1);
+        WebElement errorNotification = driver.findElement(emailErrorNotification);
+        wait.until(ExpectedConditions.visibilityOf(errorNotification));
+        return errorNotification.getText();
     }
 
 }
