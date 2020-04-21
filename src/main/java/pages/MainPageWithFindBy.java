@@ -4,35 +4,11 @@ package pages;
 import com.epam.healenium.SelfHealingDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainPageWithFindBy extends BasePage {
-
-    @FindBy(xpath = "//input[@name='EMAIL']")
-    WebElement subscribeEmail;
-
-    @FindBy(xpath = "//button[text()='Subscribe']")
-    WebElement subscribeButton;
-
-    @FindBy(css = "div.js-errorbox-all.t186__blockinput-errorbox")
-    WebElement subscribeValidationErrorNotification;
-
-    @FindBy(xpath = "//input[@placeholder='E-mail']")
-    WebElement submitEmail;
-
-    @FindBy(xpath = "//input[@placeholder='Name']")
-    WebElement submitName;
-
-    @FindBy(xpath = "//input[@placeholder='Phone']")
-    WebElement submitPhone;
-
-    @FindBy(xpath = "//button[text()='Submit']")
-    WebElement submitButton;
-
-    By emailErrorNotification = By.xpath("(//div[@class='t-form__errorbox-text t-text t-text_md'])[2]");
 
     public MainPageWithFindBy(SelfHealingDriver driver) {
         super(driver);
@@ -45,42 +21,42 @@ public class MainPageWithFindBy extends BasePage {
     }
 
     public MainPageWithFindBy inputEmailToSubscribe(String email) {
-        subscribeEmail.sendKeys(email);
+        driver.findElement(By.xpath("//input[@name='EMAIL']")).sendKeys(email);
         return this;
     }
 
     public MainPageWithFindBy clickSubscribe() {
-        subscribeButton.click();
+        driver.findElement(By.xpath("//button[text()='Subscribe']")).click();
         return this;
     }
 
     public String getSubscriptionValidationErrorText() {
-        return subscribeValidationErrorNotification.getText();
+        return driver.findElement(By.cssSelector("div.js-errorbox-all.t186__blockinput-errorbox")).getText();
     }
 
     public MainPageWithFindBy inputEmailToSubmit(String email) {
-        submitEmail.sendKeys(email);
+        driver.findElement(By.xpath("//input[@placeholder='E-mail']")).sendKeys(email);
         return this;
     }
 
     public MainPageWithFindBy inputNameToSubmit(String name) {
-        submitName.sendKeys(name);
+        driver.findElement(By.xpath("//input[@placeholder='Name']")).sendKeys(name);
         return this;
     }
 
     public MainPageWithFindBy inputPhoneToSubmit(String phone) {
-        submitPhone.sendKeys(phone);
+        driver.findElement(By.xpath("//input[@placeholder='Phone']")).sendKeys(phone);
         return this;
     }
 
     public MainPageWithFindBy clickSubmit() {
-        submitButton.click();
+        driver.findElement(By.xpath("//button[text()='Submit']")).click();
         return this;
     }
 
     public String getEmailErrorNotificationText() {
         WebDriverWait wait = new WebDriverWait(driver, 1);
-        WebElement errorNotification = driver.findElement(emailErrorNotification);
+        WebElement errorNotification = driver.findElement(By.xpath("(//div[@class='t-form__errorbox-text t-text t-text_md'])[2]"));
         wait.until(ExpectedConditions.visibilityOf(errorNotification));
         return errorNotification.getText();
     }

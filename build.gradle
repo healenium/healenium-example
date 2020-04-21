@@ -8,6 +8,7 @@ buildscript {
 }
 
 plugins {
+    id 'idea'
     id 'java'
 }
 
@@ -22,9 +23,6 @@ repositories {
     mavenLocal()
     maven {
         url "https://dl.bintray.com/epam/healenium"
-    }
-    maven {
-        url "http://dl.bintray.com/epam/reportportal"
     }
     mavenCentral()
 }
@@ -42,11 +40,12 @@ dependencies {
     testCompile group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
     testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
 
-//    testCompile 'com.epam.reportportal:agent-java-junit5:4.0.1'
-//    compile group: 'com.epam.reportportal', name: 'logger-java-log4j', version: '4.0.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.13.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.1'
     testCompile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.13.1'
+
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.9'
+    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.3.1'
 
 }
 
