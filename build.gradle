@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    compile group: 'com.epam.healenium', name: 'hlm-client', version: '1.1.1-RC'
+    compile group: 'com.epam.healenium', name: 'healenium-web', version: '3.0'
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.30'
 
     testCompile group: 'org.hamcrest', name: 'hamcrest-core', version: '2.1'
