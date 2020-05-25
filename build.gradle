@@ -9,6 +9,7 @@ sourceCompatibility = 1.8
 
 
 repositories {
+    mavenLocal()
     maven {
         url  "https://dl.bintray.com/epam/healenium"
     }
@@ -16,14 +17,27 @@ repositories {
 }
 
 dependencies {
+    compile group: 'com.epam.healenium', name: 'healenium-web', version: '3.0'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.30'
+
+    testCompile group: 'org.hamcrest', name: 'hamcrest-core', version: '2.1'
+    testCompile 'com.codeborne:selenide:5.10.0'
+    testCompile group: 'org.testcontainers', name: 'junit-jupiter', version: '1.13.0'
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.1")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.1")
-    testCompile group: 'org.hamcrest', name: 'hamcrest-core', version: '2.1'
-    compile 'com.epam.healenium:healenium-web:2.0.5'
-    testCompile 'com.codeborne:selenide:5.10.0'
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
+    testCompile group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
+
+}
+
+ext {
+    bintrayUserName = (project.hasProperty('BINTRAY_USERNAME') ? project.findProperty('BINTRAY_USERNAME') : System.getenv()['BINTRAY_USERNAME'])
+    bintrayPassword = (project.hasProperty('BINTRAY_PASSWORD') ? project.findProperty('BINTRAY_PASSWORD') : System.getenv()['BINTRAY_PASSWORD'])
 }
 
 test {
     useJUnitPlatform()
-    systemProperty 'java.util.logging.manager', 'org.apache.logging.log4j.jul.LogManager'
 }
