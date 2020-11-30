@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "com.epam.healenium.hlm-report" version "1.1"
 }
 
 group 'healenium-example'
@@ -17,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    compile group: 'com.epam.healenium', name: 'healenium-web', version: '3.0'
+    compile group: 'com.epam.healenium', name: 'healenium-web', version: '3.0.2'
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.30'
 
     testCompile group: 'org.hamcrest', name: 'hamcrest-core', version: '2.1'
