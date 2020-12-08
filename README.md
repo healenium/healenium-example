@@ -1,5 +1,7 @@
 # healenium-example
-Java project with healenium usage example
+Java project with healenium usage example.
+
+Run tests against the application with randomly generated markup https://sha-test-app.herokuapp.com/
 
 ## How to start
 ### 1.Start Healenium backend from infra folder
