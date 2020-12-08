@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "com.epam.healenium.hlm-report" version "1.1"
+    id "com.epam.healenium.hlm-report" version "1.1.1"
 }
 
 group 'healenium-example'
