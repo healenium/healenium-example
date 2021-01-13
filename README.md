@@ -17,3 +17,7 @@ Verify that images ```healenium/hlm-backend:latest``` and ```postgres:11-alpine`
 
 ```./gradlew clean test -i```
 
+### 3.Report link will be available in console like
+```
+Report available at http://localhost:7878/healenium/report/0cdcb909-73c2-4e74-a7f2-d46c06929a8f
+```
