@@ -34,11 +34,6 @@ dependencies {
 
 }
 
-ext {
-    bintrayUserName = (project.hasProperty('BINTRAY_USERNAME') ? project.findProperty('BINTRAY_USERNAME') : System.getenv()['BINTRAY_USERNAME'])
-    bintrayPassword = (project.hasProperty('BINTRAY_PASSWORD') ? project.findProperty('BINTRAY_PASSWORD') : System.getenv()['BINTRAY_PASSWORD'])
-}
-
 test {
     useJUnitPlatform()
 }
